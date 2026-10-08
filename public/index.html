@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>곰도리 🐻</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐻</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-app">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-header">
+        <h2>🍯 꿀단지 대화함</h2>
+        <button id="close-sidebar-btn" class="icon-btn sidebar-close" type="button" aria-label="목록 닫기">✕</button>
+      </div>
+      <button id="new-chat-btn" class="new-chat-btn" type="button">🐾 새 대화</button>
+      <ul id="conversation-list" class="conversation-list"></ul>
+      <p id="empty-list" class="empty-list">아직 나눈 대화가 없어요 🐻</p>
+    </aside>
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <section class="chat-panel">
+      <header class="chat-header">
+        <div class="profile">
+          <button id="open-sidebar-btn" class="icon-btn menu-btn" type="button" aria-label="대화 목록 열기">☰</button>
+          <div class="profile-avatar">🐻</div>
+          <div>
+            <h1>곰도리</h1>
+            <p class="status"><span class="status-dot"></span>꿀 먹으면서 대기 중</p>
+          </div>
+        </div>
+      </header>
+
+      <main id="messages" class="messages" aria-live="polite"></main>
+
+      <form id="chat-form" class="chat-form">
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="곰도리에게 말을 걸어 보세요 🐾"
+          autocomplete="off"
+          required
+        ></textarea>
+        <button id="send-btn" type="submit" aria-label="전송">
+          <span>보내기</span> 🐾
+        </button>
+      </form>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
