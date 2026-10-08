@@ -6,11 +6,10 @@
 
 ```
 chatbot/
-├── api/index.js      # Vercel 서버리스 함수 진입점
-├── app.js            # Express 앱 (/api/chat 라우트)
-├── server.js         # 로컬 개발 서버 (정적 파일 + API)
+├── app.js            # Express 앱 (/api/chat 라우트, Vercel 진입점)
+├── server.js         # 로컬 개발 서버
 ├── public/           # 프론트엔드 (HTML/CSS/JS)
-├── vercel.json       # /api/* → api/index.js 라우팅
+├── vercel.json       # "/" → index.html
 └── .env.example
 ```
 
@@ -28,7 +27,7 @@ npm start               # http://localhost:8080
 2. Vercel 프로젝트 Settings → Environment Variables에 `OPENAI_API_KEY` 추가
 3. 배포 (`npx vercel --prod`)
 
-`public/` 폴더는 정적 파일로, `api/index.js`는 서버리스 함수로 자동 배포됩니다.
+Vercel이 `app.js`를 Express 앱으로 자동 인식해 서버리스 함수로 배포하고, `public/` 폴더는 CDN으로 제공합니다.
 
 ## 설정
 

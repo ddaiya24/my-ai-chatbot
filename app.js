@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const OpenAI = require("openai");
 
@@ -24,8 +25,12 @@ const SYSTEM_PROMPT = `너는 '곰도리'라는 이름의 귀여운 곰돌이야
 - 모르는 건 아는 척하지 말고 솔직하게 "그건 나도 잘 모르겠어 🐻"라고 말해.
 - 사용자가 한국어가 아닌 언어로 말하면 그 언어로, 그 언어의 친근한 친구 말투로 답해.`;
 
+const PUBLIC_DIR = path.join(__dirname, "public");
+
 const app = express();
 app.use(express.json({ limit: "1mb" }));
+// 로컬에서 정적 파일 제공 (Vercel에서는 public/ 폴더를 CDN이 대신 제공)
+app.use(express.static(PUBLIC_DIR));
 
 let client;
 function getClient() {
@@ -75,4 +80,10 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
+// 첫 화면: Vercel에서 "/" 요청이 Express로 들어와도 index.html을 보여 줌
+app.get("/", (req, res) => {
+  res.sendFile(path.join(PUBLIC_DIR, "index.html"));
+});
+
+// Vercel은 app.js를 Express 앱 진입점으로 사용합니다.
 module.exports = app;

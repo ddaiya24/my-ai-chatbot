@@ -1,9 +1,5 @@
-// 로컬 개발용 서버: 정적 파일(public)과 API를 함께 제공합니다.
-const path = require("path");
-const express = require("express");
+// 로컬 개발용 서버 (Vercel에서는 app.js를 직접 사용)
 const app = require("./app");
-
-app.use(express.static(path.join(__dirname, "public")));
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
