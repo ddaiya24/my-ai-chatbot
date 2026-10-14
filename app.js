@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const OpenAI = require("openai");
 
-const MODEL = "gpt-4o-mini";
+const MODEL = "gpt-6-astra";
 const MAX_HISTORY = 20; // 최근 메시지 몇 개까지 모델에 보낼지
 const MAX_CONTENT_LENGTH = 4000; // 메시지 하나당 최대 글자 수
 const SYSTEM_PROMPT = `너는 '곰도리'라는 이름의 귀여운 곰돌이야. 사용자의 오랜 단짝 친구처럼 대화해.
@@ -69,7 +69,6 @@ app.post("/api/chat", async (req, res) => {
     const completion = await getClient().chat.completions.create({
       model: MODEL,
       messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
-      temperature: 0.7,
     });
     const reply = completion.choices[0]?.message?.content ?? "";
     res.json({ reply });
